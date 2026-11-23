@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090d0a">
+  <meta name="description" content="Dein persönlicher SUNO Techno Prompt Generator.">
+  <title>Techno Prompt Generator</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <style>
+    :root{color-scheme:dark;--bg:#090d0a;--panel:#111813;--panel2:#17211a;--line:#29372d;--green:#39ff14;--muted:#a3b2a5;--text:#f1f7f1;--warn:#ffca68}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#19351d 0,transparent 48%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1050px;margin:auto;padding:22px 16px 60px}
+    header{display:flex;align-items:center;gap:14px;margin-bottom:24px}.logo{width:58px;height:58px;flex:none}.eyebrow{color:var(--green);font-size:11px;letter-spacing:.18em;font-weight:800}.brand h1{font-size:clamp(21px,4vw,32px);line-height:1.08;margin:3px 0}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .top-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:11px;padding:10px 13px;font-weight:700}.btn:hover{border-color:var(--green)}.btn.primary{background:var(--green);border-color:var(--green);color:#071007}.btn.ghost{background:transparent}.btn.small{padding:7px 10px;font-size:12px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:linear-gradient(150deg,rgba(22,32,24,.97),rgba(14,20,16,.98));border:1px solid var(--line);border-radius:17px;padding:17px;min-width:0}.card.full{grid-column:1/-1}
+    .card h2{font-size:15px;letter-spacing:.08em;margin:0 0 4px}.sub{color:var(--muted);font-size:12px;margin:0 0 14px}.num{color:var(--green);font-size:11px;margin-right:8px}
+    .options{display:flex;flex-wrap:wrap;gap:8px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice span{display:inline-flex;align-items:center;min-height:38px;padding:8px 11px;border:1px solid #344238;border-radius:10px;background:#0d140f;color:#d9e3da;font-size:13px;transition:.15s}.choice input:checked+span{border-color:var(--green);background:#16301a;color:#dfffda;box-shadow:inset 0 0 0 1px #39ff1466}.choice input:focus-visible+span{outline:2px solid var(--green);outline-offset:2px}
+    .field{width:100%;background:#0a100c;border:1px solid var(--line);border-radius:10px;padding:11px 12px;color:var(--text)}.field:focus{outline:1px solid var(--green);border-color:var(--green)}label.fieldlabel{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
+    .range-head{display:flex;justify-content:space-between;align-items:center}.big-number{font-size:26px;font-weight:850;color:var(--green);font-variant-numeric:tabular-nums}.range{width:100%;accent-color:var(--green);margin:12px 0}.range-ends{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{border:1px solid #70572b;background:#2a2110;color:#ffe0a5;border-radius:11px;padding:10px 12px;font-size:12px;margin-top:12px;display:none}
+    .output{white-space:pre-wrap;overflow-wrap:anywhere;min-height:110px;background:#080d09;border:1px solid var(--line);border-radius:12px;padding:14px;color:#e7f1e8;font-size:13px}.output.empty{color:#849487}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.muted{color:var(--muted)}.smalltext{font-size:11px;color:var(--muted)}
+    .lists{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.saved-list{padding:0;margin:10px 0 0;list-style:none}.saved-list li{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:9px 0;font-size:12px}.saved-list button{border:0;background:transparent;color:var(--green);padding:4px}
+    footer{text-align:center;color:#78877a;font-size:11px;margin-top:22px}
+    @media(max-width:700px){.grid,.lists{grid-template-columns:1fr}.card.full{grid-column:auto}.wrap{padding:15px 12px 40px}header{align-items:flex-start}.top-actions{max-width:110px}.brand p{max-width:230px}.two{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Techno Prompt Generator Icon"><rect x="3" y="3" width="94" height="94" rx="23" fill="#101a12" stroke="#39ff14" stroke-width="2"/><path d="M17 53h8l6-19 9 37 9-48 9 57 9-37 7 21 5-11h5" fill="none" stroke="#39ff14" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="50" r="38" fill="none" stroke="#39ff14" stroke-opacity=".22"/></svg>
+    <div class="brand"><div class="eyebrow">YOUR PERSONAL SUNO TOOL</div><h1>TECHNO PROMPT GENERATOR</h1><p>Musikalische Ideen präzise zusammenstellen.</p></div>
+    <div class="top-actions"><button class="btn ghost small" id="resetBtn">Reset</button></div>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2><span class="num">01</span>GENRE</h2><p class="sub">Ein Hauptgenre auswählen, optional ein zweites als Einfluss.</p>
+      <label class="fieldlabel" for="mainGenre">Hauptgenre</label>
+      <select class="field" id="mainGenre">
+        <option>Dark Techno</option><option>Hypnotic Techno</option><option>Peak Time Techno</option><option>Driving Underground</option><option>Techno Ambient</option><option>Afterhour Techno</option>
+      </select>
+      <div style="height:12px"></div><label class="fieldlabel" for="secondaryGenre">Zweites Genre (optional)</label>
+      <select class="field" id="secondaryGenre"><option value="">Kein zweites Genre</option><option>Dark Techno</option><option>Hypnotic Techno</option><option>Peak Time Techno</option><option>Driving Underground</option><option>Techno Ambient</option><option>Afterhour Techno</option></select>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">02</span>BPM CONTROL</h2><p class="sub">Tempo von 110 bis 150 BPM.</p>
+      <div class="range-head"><span class="muted">Track tempo</span><output class="big-number" id="bpmValue">130 BPM</output></div>
+      <input class="range" id="bpm" type="range" min="110" max="150" step="1" value="130">
+      <div class="range-ends"><span>110 BPM</span><span>150 BPM</span></div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">03</span>STYLE</h2><p class="sub">Einen dominanten Charakter auswählen.</p>
+      <div class="options" id="styleOptions">
+        <label class="choice"><input type="radio" name="style" value="Deep" checked><span>Deep</span></label>
+        <label class="choice"><input type="radio" name="style" value="Heavy"><span>Heavy</span></label>
+        <label class="choice"><input type="radio" name="style" value="Continuous"><span>Continuous</span></label>
+        <label class="choice"><input type="radio" name="style" value="Energetic"><span>Energetic</span></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">04</span>EXCLUDE</h2><p class="sub">Mehrere unerwünschte Elemente auswählen. Unabhängig von Vocal Control.</p>
+      <div class="options" id="excludeOptions">
+        <label class="choice"><input type="checkbox" value="Vocals"><span>Vocal</span></label>
+        <label class="choice"><input type="checkbox" value="Melodic elements"><span>Melodie</span></label>
+        <label class="choice"><input type="checkbox" value="Harsh sizzling high frequencies"><span>Sizzle</span></label>
+        <label class="choice"><input type="checkbox" value="Breakdowns"><span>Breakdown</span></label>
+        <label class="choice"><input type="checkbox" value="Pauses and moments of silence"><span>Pause</span></label>
+      </div>
+      <div class="notice" id="vocalWarning">Hinweis: Vocal ist gleichzeitig als gewünschte Stimme und als Ausschluss gewählt. Prüfe, welche Anweisung du verwenden möchtest. Deine Auswahl bleibt unverändert.</div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">05</span>DURATION</h2><p class="sub">Gewünschte Ziellänge des Tracks.</p>
+      <div class="range-head"><span class="muted">Track length</span><output class="big-number" id="durationValue">6 min</output></div>
+      <input class="range" id="duration" type="range" min="3" max="10" step="1" value="6">
+      <div class="range-ends"><span>3 Minuten</span><span>10 Minuten</span></div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">06</span>TRACK TITLE</h2><p class="sub">Deinen eigenen Tracktitel manuell eintragen.</p>
+      <input class="field" id="trackTitle" type="text" maxlength="100" placeholder="Dein Tracktitel …">
+    </section>
+
+    <section class="card">
+      <h2><span class="num">07</span>VOCAL CONTROL</h2><p class="sub">Stimme und Vocal-Charakter festlegen.</p>
+      <label class="fieldlabel" for="vocalMode">Stimm-Auswahl</label>
+      <select class="field" id="vocalMode"><option value="Instrumental">Instrumental – keine Stimme</option><option value="Male">Männliche Stimme</option><option value="Female">Weibliche Stimme</option><option value="Both">Männliche + weibliche Stimme</option></select>
+      <div style="height:12px"></div><label class="fieldlabel" for="vocalCharacter">Vocal-Charakter</label>
+      <select class="field" id="vocalCharacter"><option value="Atmospheric">Atmospheric</option><option value="Dark">Dark</option><option value="Spoken Words">Spoken Words</option><option value="Sung Vocals">Sung</option><option value="Chopped Vocal Samples">Vocal Chops</option><option value="Chant">Chant</option></select>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">08</span>ATMOSPHERE</h2><p class="sub">Mehrere Stimmungen kombinierbar.</p>
+      <div class="options" id="atmosphereOptions"></div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">09</span>SOUND DESIGN</h2><p class="sub">Sound-Elemente für den Track auswählen.</p>
+      <div class="options" id="soundOptions"></div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">10</span>ARRANGEMENT</h2><p class="sub">Den musikalischen Verlauf festlegen.</p>
+      <div class="options" id="arrangementOptions"></div>
+    </section>
+
+    <section class="card full">
+      <div class="range-head"><div><h2><span class="num">11</span>GENERATE & COPY</h2><p class="sub">Deine Auswahl wird zu einem englischen SUNO-Style-Prompt zusammengestellt.</p></div><button class="btn primary" id="generateBtn">✦ Generate Prompt</button></div>
+      <div id="promptOutput" class="output empty">Noch kein Prompt erstellt. Wähle deine Einstellungen und klicke auf „Generate Prompt“.</div>
+      <div class="toolbar">
+        <button class="btn primary" id="copyStyleBtn">Copy Style Prompt</button>
+        <button class="btn" id="copyExcludeBtn">Copy Exclude</button>
+        <button class="btn" id="copyTitleBtn">Copy Title</button>
+        <button class="btn" id="randomBtn">⤨ Smart Random</button>
+      </div>
+      <p class="smalltext" id="copyStatus" aria-live="polite">Style, Exclude und Titel werden getrennt kopiert. Die tatsächliche Tracklänge und BPM können von SUNO abweichen.</p>
+    </section>
+  </main>
+
+  <div class="lists">
+    <section class="card"><div class="range-head"><div><h2>★ FAVORITEN</h2><p class="sub">Gespeicherte Einstellungen auf diesem Gerät.</p></div><button class="btn small" id="saveFavoriteBtn">Speichern</button></div><ul class="saved-list" id="favoritesList"></ul></section>
+    <section class="card"><div class="range-head"><div><h2>◷ PROMPT-VERLAUF</h2><p class="sub">Zuletzt erstellte Prompts.</p></div><button class="btn small ghost" id="clearHistoryBtn">Leeren</button></div><ul class="saved-list" id="historyList"></ul></section>
+  </div>
+  <footer>TECHNO PROMPT GENERATOR · Läuft lokal im Browser · Keine KI-API, kein Abo</footer>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>

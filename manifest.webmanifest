@@ -1,0 +1,24 @@
+{
+  "name": "Techno Prompt Generator",
+  "short_name": "Techno Prompts",
+  "description": "Dein persönlicher SUNO Techno Prompt Generator",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090d0a",
+  "theme_color": "#090d0a",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
