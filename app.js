@@ -87,7 +87,7 @@ function persistSettings(){try{localStorage.setItem(STORE.settings,JSON.stringif
 function randomize(){
   const pick=a=>a[Math.floor(Math.random()*a.length)];
   const maybe=a=>a.filter(()=>Math.random()<.32);
-  const genres=["Dark Techno","Hypnotic Techno","Peak Time Techno","Driving Underground","Techno Ambient","Afterhour Techno"];
+  const genres=["Techno (Classic)","Acid Techno","Industrial Techno","Dark Techno","Hard Techno","Hypnotic Techno","Minimal Techno","Melodic Techno","Peak Time Techno","Groove Techno","Raw Techno","Rave Techno","Dub Techno","Ambient Techno","Afterhour Techno"];
   const bpm=Math.floor(118+Math.random()*29);
   const styles=["Deep","Heavy","Continuous","Energetic"];
   const atmos=maybe(choices.atmosphere), sounds=maybe(choices.sound), arr=maybe(choices.arrangement);
